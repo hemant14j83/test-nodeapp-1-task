@@ -1,0 +1,15 @@
+version: "3"
+services:
+  upg-app-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: upg-app-1:latest
+    container_name: upg-app-1
+    command: npm run start
+    restart: always
+    volumes:
+      - "./logs:/usr/src/app/upg-app-1/logs"
+    ports:
+      - "8080:8081"
+
