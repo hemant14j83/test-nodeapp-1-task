@@ -9,4 +9,4 @@ RUN npm install -g sequelize-cli
 
 EXPOSE 8080
 #ENTRYPOINT ["/bin/sh"]
-CMD ["node","./src/index.ts"]
+CMD ["node","server.js"]
