@@ -1,10 +1,11 @@
+def branchName = checkout(scm).GIT_BRANCH
 pipeline{
     agent any
     stages{
         stage('Git Checkout'){
             steps{
                 retry(3){
-                    git branch: "development",
+                    git branch: "${branchName}",
                     url: "https://github.com/hemant14j83/test-nodeapp-1-task.git"
                 }
             }
@@ -17,6 +18,11 @@ pipeline{
                     sh 'docker tag course-project-ecr:latest 947804212129.dkr.ecr.us-east-1.amazonaws.com/course-project-ecr:latest'
                     sh 'docker push 947804212129.dkr.ecr.us-east-1.amazonaws.com/course-project-ecr:latest'
                 }
+            }
+        }
+        stage('Deploy'){
+            script{
+                sh 'ssh ~/.ssh/app ubuntu@10.100.3.224 && docker pull 947804212129.dkr.ecr.us-east-1.amazonaws.com/course-project-ecr:latest && docker stop project-app && docker run -d -p 8080:8081 --nameproject-app 947804212129.dkr.ecr.us-east-1.amazonaws.com/course-project-ecr:latest'
             }
         }
     }
