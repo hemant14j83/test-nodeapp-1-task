@@ -1,4 +1,5 @@
 def branchName = checkout(scm).GIT_BRANCH
+echo "$branchName"
 pipeline{
     agent any
     stages{
