@@ -26,7 +26,7 @@ pipeline{
                     docker stop project-app || true
                     docker rm  project-app || true
                     docker run -d -p 8080:8081 --name project-app 947804212129.dkr.ecr.us-east-1.amazonaws.com/course-project-ecr:latest
-                    EOF""".stripIndent()
+                    <<-EOF""".stripIndent()
             }
         }
     }
