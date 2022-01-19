@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: upg-app-1:latest
+    image: course-project-ecr:latest
     container_name: upg-app-1
     command: npm run start
     restart: always
